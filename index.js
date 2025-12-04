@@ -128,15 +128,15 @@ app.post('/upload', (req, res) => {
         const owner = process.env.GITHUB_OWNER;
         const repo = process.env.GITHUB_REPO;
         const branch = 'main';
-        const markdownUrl = TEST_MODE 
+        const markdownUrl = TEST_MODE
           ? result.url
-          : `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${filePath}`;
+          : `https://github.com/${owner}/${repo}/blob/${branch}/${filePath}?raw=true`;
 
         results.push({
           success: true,
           fileName,
           url: result.url,
-          htmlUrl: result.htmlUrl,
+          htmlUrl: markdownUrl,
           markdownUrl,
           markdown: `![${fileName}](${markdownUrl})`
         });
@@ -210,13 +210,13 @@ app.post('/upload-clipboard', async (req, res) => {
     } else {
       result = await uploadToGitHub(file, fileName, filePath);
     }
-
-    const owner = process.env.GITHUB_OWNER;
-    const repo = process.env.GITHUB_REPO;
-    const branch = 'main';
+    
+    const owner   = process.env.GITHUB_OWNER;
+    const repo    = process.env.GITHUB_REPO;
+    const branch  = process.env.GITHUB_BRANCH || 'main';
     const markdownUrl = TEST_MODE
       ? result.url
-      : `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${filePath}`;
+      : `https://github.com/${owner}/${repo}/blob/${branch}/${filePath}?raw=true`;
 
     console.log('클립보드 이미지 업로드 성공:', fileName);
 
@@ -225,7 +225,7 @@ app.post('/upload-clipboard', async (req, res) => {
       message: '클립보드 이미지가 성공적으로 업로드되었습니다.',
       fileName,
       url: result.url,
-      htmlUrl: result.htmlUrl,
+      htmlUrl: markdownUrl,
       markdownUrl,
       markdown: `![${fileName}](${markdownUrl})`,
       testMode: TEST_MODE

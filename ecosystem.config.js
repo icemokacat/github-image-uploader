@@ -16,6 +16,7 @@ module.exports = {
       GITHUB_OWNER: process.env.GITHUB_OWNER,
       GITHUB_REPO: process.env.GITHUB_REPO,
       GITHUB_FOLDER: process.env.GITHUB_FOLDER,
+      GITHUB_BRANCH: process.env.GITHUB_BRANCH,
       TEST_MODE: process.env.TEST_MODE
     },
     error_file: './logs/err.log',
