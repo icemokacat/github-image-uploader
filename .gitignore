@@ -2,3 +2,5 @@ uploads/
 .env
 node_modules/
 package-lock.json
+logs/
+CLAUDE.md

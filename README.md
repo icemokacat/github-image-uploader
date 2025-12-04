@@ -41,6 +41,13 @@ npm run dev
 
 # 프로덕션 모드
 npm start
+
+# PM2로 운영 서버 실행 (권장)
+npm install -g pm2  # PM2 설치 (최초 1회)
+npm run pm2:start   # 서버 시작
+npm run pm2:logs    # 로그 확인
+npm run pm2:restart # 서버 재시작
+npm run pm2:stop    # 서버 중지
 ```
 
 ### 5. 접속
