@@ -513,11 +513,11 @@
             selectedFiles.forEach(file => {
                 formData.append('images', file);
             });
-            
+
             uploadBtn.disabled = true;
             loading.style.display = 'block';
             result.style.display = 'none';
-            
+
             try {
                 const response = await fetch('/upload', {
                     method: 'POST',
